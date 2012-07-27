@@ -23,4 +23,11 @@ public class Twit {
 
     static constraints = {
     }
+
+    static mapWith = "mongo"
+
+    static mapping = {
+        collection "reports"
+        database "vento"
+    }
 }

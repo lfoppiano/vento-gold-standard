@@ -2,8 +2,8 @@
 environments {
     development {
         dataSource {
-            host = "http://192.168.1.66"
-            port = 28017
+            host = "localhost"
+            port = 27017
             databaseName = "vento"
         }
     }
