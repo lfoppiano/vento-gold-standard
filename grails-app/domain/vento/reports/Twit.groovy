@@ -30,4 +30,12 @@ public class Twit {
         collection "reports"
         database "vento"
     }
+
+    static namedQueries = {
+        queries {
+            projections {
+                distinct ("query")
+            }
+        }
+    }
 }

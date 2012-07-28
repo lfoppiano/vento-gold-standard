@@ -7,16 +7,33 @@ class TwitController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
-        redirect(action: "list", params: params)
+        redirect(action: "menu", params: params)
     }
 
     def list() {
+        def twitInstanceList = []
+        def twitInstanceTotal = 0
+
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [twitInstanceList: Twit.list(params), twitInstanceTotal: Twit.count()]
+
+
+        if (params.query){
+            twitInstanceList = Twit.findAllByQuery(params.query, params)
+            twitInstanceTotal = Twit.countByQuery(params.query)
+        } else {
+            twitInstanceList = Twit.list(params)
+            twitInstanceTotal = Twit.count()
+        }
+
+        [twitInstanceList: twitInstanceList, twitInstanceTotal: twitInstanceTotal]
     }
 
     def create() {
         [twitInstance: new Twit(params)]
+    }
+
+    def menu() {
+        [twitQueryList: Twit.queries.list().sort()]
     }
 
     def save() {

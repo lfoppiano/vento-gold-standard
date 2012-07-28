@@ -44,7 +44,7 @@
 				</tbody>
 			</table>
 			<div class="pagination">
-				<g:paginate total="${twitInstanceTotal}" />
+				<g:paginate total="${twitInstanceTotal}" params="${params}" />
 			</div>
 		</div>
 	</body>
