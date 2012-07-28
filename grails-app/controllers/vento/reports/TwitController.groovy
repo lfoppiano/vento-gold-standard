@@ -28,6 +28,24 @@ class TwitController {
         [twitInstanceList: twitInstanceList, twitInstanceTotal: twitInstanceTotal]
     }
 
+    def generalStatistics() {
+        def totalTwitterTwits = Twit.count()
+
+        def queries = Twit.queries.list()
+        def totalQueries  = queries.size()
+
+        def totalPerQuery = [:]
+
+        queries.each {
+            totalPerQuery[it] = Twit.countByQuery(it)
+        }
+
+
+        [totalTwits: totalTwitterTwits, totalQueries:  totalQueries, totalPerQuery: totalPerQuery]
+
+
+    }
+
     def create() {
         [twitInstance: new Twit(params)]
     }

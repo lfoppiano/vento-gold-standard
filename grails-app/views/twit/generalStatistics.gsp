@@ -23,39 +23,16 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <h1>Twitter statistics</h1>
+    <h1>Twitter general statistics</h1>
 
 
-    <table>
-        <tbody>
-        <tr>
-            <td>
-                <g:link action="generalStatistics">General statistics</g:link>
-            </td>
-            <td colspan="4">
-                <g:link action="list">Show all the entries</g:link>
-            </td>
-        </tr>
-        <tr>
-            <td  colspan="5">
-
-            </td>
-        </tr>
-        <tr>
-        <g:each in="${twitQueryList}" status="i" var="twitQuery">
-            <td class="${(i % 2) == 0 ? 'even' : 'odd'}">
-
-                <g:link action="list" params="[query: twitQuery]">${twitQuery}</g:link>
-            </td>
-        %{--When I have 5 elements I create a new row--}%
-            <g:if test="${((i + 1) % 5) == 0}">
-                </tr>
-                <tr>
-            </g:if>
-        </g:each>
-        </tr>
-        </tbody>
-    </table>
+    Total: ${totalTwits} <br />
+    Total queries: ${totalQueries} <br />
+    <br /><br />
+    Total per query:                            <br />
+    <g:each in="${totalPerQuery}" status="i" var="entry" >
+        ${entry.key} -> ${entry.value}                     <br />
+    </g:each>
 
 </div>
 </body>
