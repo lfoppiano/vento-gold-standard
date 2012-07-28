@@ -1,98 +1,100 @@
 <!doctype html>
 <html>
-	<head>
-		<meta name="layout" content="main"/>
-		<title>Welcome to Vento statistics</title>
-		<style type="text/css" media="screen">
-			#status {
-				background-color: #eee;
-				border: .2em solid #fff;
-				margin: 2em 2em 1em;
-				padding: 1em;
-				width: 12em;
-				float: left;
-				-moz-box-shadow: 0px 0px 1.25em #ccc;
-				-webkit-box-shadow: 0px 0px 1.25em #ccc;
-				box-shadow: 0px 0px 1.25em #ccc;
-				-moz-border-radius: 0.6em;
-				-webkit-border-radius: 0.6em;
-				border-radius: 0.6em;
-			}
+<head>
+    <meta name="layout" content="main"/>
+    <title>Welcome to Vento statistics</title>
+    <style type="text/css" media="screen">
+    #status {
+        background-color: #eee;
+        border: .2em solid #fff;
+        margin: 2em 2em 1em;
+        padding: 1em;
+        width: 12em;
+        float: left;
+        -moz-box-shadow: 0px 0px 1.25em #ccc;
+        -webkit-box-shadow: 0px 0px 1.25em #ccc;
+        box-shadow: 0px 0px 1.25em #ccc;
+        -moz-border-radius: 0.6em;
+        -webkit-border-radius: 0.6em;
+        border-radius: 0.6em;
+    }
 
-			.ie6 #status {
-				display: inline; /* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
-			}
+    .ie6 #status {
+        display: inline; /* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
+    }
 
-			#status ul {
-				font-size: 0.9em;
-				list-style-type: none;
-				margin-bottom: 0.6em;
-				padding: 0;
-			}
-            
-			#status li {
-				line-height: 1.3;
-			}
+    #status ul {
+        font-size: 0.9em;
+        list-style-type: none;
+        margin-bottom: 0.6em;
+        padding: 0;
+    }
 
-			#status h1 {
-				text-transform: uppercase;
-				font-size: 1.1em;
-				margin: 0 0 0.3em;
-			}
+    #status li {
+        line-height: 1.3;
+    }
 
-			#page-body {
-				margin: 2em 1em 1.25em 12em;
-			}
+    #status h1 {
+        text-transform: uppercase;
+        font-size: 1.1em;
+        margin: 0 0 0.3em;
+    }
 
-			h2 {
-				margin-top: 1em;
-				margin-bottom: 0.3em;
-				font-size: 1em;
-			}
+    #page-body {
+        margin: 2em 1em 1.25em 12em;
+    }
 
-			p {
-				line-height: 1.5;
-				margin: 0.25em 0;
-			}
+    h2 {
+        margin-top: 1em;
+        margin-bottom: 0.3em;
+        font-size: 1em;
+    }
 
-			#controller-list ul {
-				list-style-position: inside;
-			}
+    p {
+        line-height: 1.5;
+        margin: 0.25em 0;
+    }
 
-			#controller-list li {
-				line-height: 1.3;
-				list-style-position: inside;
-				margin: 0.25em 0;
-			}
+    #controller-list ul {
+        list-style-position: inside;
+    }
 
-			@media screen and (max-width: 480px) {
-				#status {
-					display: none;
-				}
+    #controller-list li {
+        line-height: 1.3;
+        list-style-position: inside;
+        margin: 0.25em 0;
+    }
 
-				#page-body {
-					margin: 0 1em 1em;
-				}
+    @media screen and (max-width: 480px) {
+        #status {
+            display: none;
+        }
 
-				#page-body h1 {
-					margin-top: 0;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<div id="page-body" role="main">
-			<h1>Vento statistics</h1>
-			<p>Congratulations, you have successfully started your application</p>
+        #page-body {
+            margin: 0 1em 1em;
+        }
 
-			<div id="controller-list" role="navigation">
-				<h2>Available views:</h2>
-				<ul>
-                    <li class="controller"><g:link controller="Twit">Twitter</g:link></li>
-                    <li class="controller"><g:link controller="Twit">Facebook</g:link></li>
-                    <li class="controller"><g:link controller="Twit">...</g:link></li>
-				</ul>
-			</div>
-		</div>
-	</body>
+        #page-body h1 {
+            margin-top: 0;
+        }
+    }
+    </style>
+</head>
+
+<body>
+<div id="page-body" role="main">
+    <h1>Vento statistics</h1>
+
+    <p>Congratulations, you have successfully started your application</p>
+
+    <div id="controller-list" role="navigation">
+        <h2>Available views:</h2>
+        <ul>
+            <li class="controller"><g:link controller="Twit">Twitter</g:link></li>
+            <li class="controller"><g:link controller="Twit">Facebook</g:link></li>
+            <li class="controller"><g:link controller="Twit">...</g:link></li>
+        </ul>
+    </div>
+</div>
+</body>
 </html>

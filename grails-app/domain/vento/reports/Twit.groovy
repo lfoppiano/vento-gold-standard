@@ -34,7 +34,7 @@ public class Twit {
     static namedQueries = {
         queries {
             projections {
-                distinct ("query")
+                distinct("query")
             }
         }
     }

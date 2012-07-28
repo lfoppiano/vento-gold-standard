@@ -17,7 +17,7 @@ class TwitController {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
 
 
-        if (params.query){
+        if (params.query) {
             twitInstanceList = Twit.findAllByQuery(params.query, params)
             twitInstanceTotal = Twit.countByQuery(params.query)
         } else {
@@ -43,14 +43,14 @@ class TwitController {
             return
         }
 
-		flash.message = message(code: 'default.created.message', args: [message(code: 'twit.label', default: 'Twit'), twitInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'twit.label', default: 'Twit'), twitInstance.id])
         redirect(action: "show", id: twitInstance.id)
     }
 
     def show() {
         def twitInstance = Twit.get(params.id)
         if (!twitInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'twit.label', default: 'Twit'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'twit.label', default: 'Twit'), params.id])
             redirect(action: "list")
             return
         }
@@ -81,8 +81,8 @@ class TwitController {
             def version = params.version.toLong()
             if (twitInstance.version > version) {
                 twitInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'twit.label', default: 'Twit')] as Object[],
-                          "Another user has updated this Twit while you were editing")
+                        [message(code: 'twit.label', default: 'Twit')] as Object[],
+                        "Another user has updated this Twit while you were editing")
                 render(view: "edit", model: [twitInstance: twitInstance])
                 return
             }
@@ -95,25 +95,25 @@ class TwitController {
             return
         }
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'twit.label', default: 'Twit'), twitInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'twit.label', default: 'Twit'), twitInstance.id])
         redirect(action: "show", id: twitInstance.id)
     }
 
     def delete() {
         def twitInstance = Twit.get(params.id)
         if (!twitInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'twit.label', default: 'Twit'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'twit.label', default: 'Twit'), params.id])
             redirect(action: "list")
             return
         }
 
         try {
             twitInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'twit.label', default: 'Twit'), params.id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'twit.label', default: 'Twit'), params.id])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'twit.label', default: 'Twit'), params.id])
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'twit.label', default: 'Twit'), params.id])
             redirect(action: "show", id: params.id)
         }
     }
