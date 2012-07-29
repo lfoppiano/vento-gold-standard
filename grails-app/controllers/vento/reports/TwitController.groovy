@@ -1,6 +1,7 @@
 package vento.reports
 
 import org.springframework.dao.DataIntegrityViolationException
+import org.vento.statistics.general.GeneralStatisticRow
 
 class TwitController {
 
@@ -29,48 +30,29 @@ class TwitController {
     }
 
     def generalStatistics() {
-        def totalTwitterTwits = Twit.count()
+        def totalElements = Twit.count()
 
         def queries = Twit.queries.list()
         def totalQueries  = queries.size()
 
-        def brandStatistics = [:]
+        def statisticList = []
 
         queries.each {
-            brandStatistics[it] = [
-                    countByQuery: Twit.countByQuery(it),
-                    totNegative: 0,
-                    totPositive: 0,
-                    totNeutral: 0,
-                    mismatch: 0,
-                    match: 0
-            ]
-            Twit.findAllByQuery(it).each { query ->
-                switch (query.score) {
-                    case '1.0':
-                        brandStatistics[it]['totNegative']++
-                        break
-                    case '2.0':
-                        brandStatistics[it]['totNeutral']++
-                        break
-                    case '3.0':
-                        brandStatistics[it]['totPositive']++
-                        break
-                }
+            GeneralStatisticRow row = new GeneralStatisticRow()
 
-                if(query.score != query.referenceScore) {
-                    brandStatistics[it]['mismatch']++
-                }else {
-                    brandStatistics[it]['match']++
-                }
-            }
+            row.totalElements = Twit.countByQuery(it)
+            row.totalNegative = Twit.countByQueryAndScore(it, '1.0')
+            row.totalPositive = Twit.countByQueryAndScore(it, '3.0')
+            row.totalNeutral = Twit.countByQueryAndScore(it, '2.0')
 
+            row.totalRefMismatches = Twit.countByQuery(it) { score != referenceScore }
+            row.totalRefMatches = Twit.countByQuery(it) { score.equals(referenceScore) }
+            row.query = it
+
+            statisticList.add(row)
         }
 
-
-
-
-        [totalTwits: totalTwitterTwits, totalQueries:  totalQueries, totalPerQuery: brandStatistics]
+        [totalElements: totalElements, totalQueries: totalQueries, statisticList: statisticList]
 
 
     }

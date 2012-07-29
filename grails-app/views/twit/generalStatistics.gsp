@@ -25,15 +25,52 @@
     </g:if>
     <h1>Twitter general statistics</h1>
 
+    <table>
+        <tr>
+            <td>Total ${totalElements}</td>
+            <td>Total queries: ${totalQueries}</td>
+        </tr>
+    </table>
 
-    Total: ${totalTwits} <br />
-    Total queries: ${totalQueries} <br />
-    <br /><br />
-    Total per query:                            <br />
-    <g:each in="${totalPerQuery}" status="i" var="entry" >
-        ${entry.key} -> ${entry.value}                     <br />
-    </g:each>
 
+    <table>
+        <thead>
+        <tr>
+            <g:sortableColumn params="${params}" property="query"
+                              title="${message(code: 'twit.query.label', default: 'Query')}"/>
+            <g:sortableColumn params="${params}" property="totalElements"
+                              title="${message(code: 'twit.text.label', default: 'Total')}"/>
+            <g:sortableColumn params="${params}" property="totalPositive"
+                              title="${message(code: 'twit.score.label', default: 'Positive')}"/>
+            <g:sortableColumn params="${params}" property="totalNegative"
+                              title="${message(code: 'twit.referenceScore.label', default: 'Negative')}"/>
+            <g:sortableColumn params="${params}" property="totalNeutral"
+                              title="${message(code: 'twit.score.label', default: 'Neutral')}"/>
+            <g:sortableColumn params="${params}" property="totalRefMismatches"
+                              title="${message(code: 'twit.score.label', default: 'Reference mismatches')}"/>
+            <g:sortableColumn params="${params}" property="totalRefMatches"
+                              title="${message(code: 'twit.score.label', default: 'Reference matches')}"/>
+
+        </tr>
+        </thead>
+        <tbody>
+        <g:each in="${statisticList}" status="i" var="row">
+            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                <td>${fieldValue(bean: row, field: "query")}</td>
+                <td>${fieldValue(bean: row, field: "totalElements")}</td>
+                <td>${fieldValue(bean: row, field: "totalPositive")}</td>
+                <td>${fieldValue(bean: row, field: "totalNegative")}</td>
+                <td>${fieldValue(bean: row, field: "totalNeutral")}</td>
+                <td>${fieldValue(bean: row, field: "totalRefMismatches")}</td>
+                <td>${fieldValue(bean: row, field: "totalRefMatches")}</td>
+            </tr>
+        </g:each>
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <g:paginate total="${statisticList.size()}" params="${params}"/>
+    </div>
 </div>
 </body>
 </html>
