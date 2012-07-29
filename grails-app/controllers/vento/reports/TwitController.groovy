@@ -34,14 +34,43 @@ class TwitController {
         def queries = Twit.queries.list()
         def totalQueries  = queries.size()
 
-        def totalPerQuery = [:]
+        def brandStatistics = [:]
 
         queries.each {
-            totalPerQuery[it] = Twit.countByQuery(it)
+            brandStatistics[it] = [
+                    countByQuery: Twit.countByQuery(it),
+                    totNegative: 0,
+                    totPositive: 0,
+                    totNeutral: 0,
+                    mismatch: 0,
+                    match: 0
+            ]
+            Twit.findAllByQuery(it).each { query ->
+                switch (query.score) {
+                    case '1.0':
+                        brandStatistics[it]['totNegative']++
+                        break
+                    case '2.0':
+                        brandStatistics[it]['totNeutral']++
+                        break
+                    case '3.0':
+                        brandStatistics[it]['totPositive']++
+                        break
+                }
+
+                if(query.score != query.referenceScore) {
+                    brandStatistics[it]['mismatch']++
+                }else {
+                    brandStatistics[it]['match']++
+                }
+            }
+
         }
 
 
-        [totalTwits: totalTwitterTwits, totalQueries:  totalQueries, totalPerQuery: totalPerQuery]
+
+
+        [totalTwits: totalTwitterTwits, totalQueries:  totalQueries, totalPerQuery: brandStatistics]
 
 
     }
