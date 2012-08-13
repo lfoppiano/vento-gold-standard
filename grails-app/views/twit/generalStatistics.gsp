@@ -5,6 +5,23 @@
     <meta name="layout" content="main">
     <g:set var="entityName" value="${message(code: 'twit.label', default: 'Twit')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
+
+    <jqDT:resources />
+    <g:javascript>
+         $(document).ready(function() {
+            $('#people').dataTable({
+               sScrollY: '70%',
+               bProcessing: true,
+               bServerSide: true,
+               sAjaxSource: '${request.contextPath + '/people/dataTablesData'}' ,
+               sPaginationType: "full_numbers",
+               aLengthMenu: [[100, 500, 1000, 5000, -1], [100, 500, 1000, 5000, "All"]],
+               iDisplayLength: 500
+            });
+         });
+    </g:javascript>
+
+
 </head>
 
 <body>
@@ -33,7 +50,8 @@
     </table>
 
 
-    <table>
+
+    %{--<table>
         <thead>
         <tr>
             <g:sortableColumn params="${params}" property="query"
@@ -66,7 +84,7 @@
             </tr>
         </g:each>
         </tbody>
-    </table>
+    </table>--}%
 
     <div class="pagination">
         <g:paginate total="${statisticList.size()}" params="${params}"/>

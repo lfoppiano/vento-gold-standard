@@ -58,6 +58,10 @@ grails.exceptionresolver.params.exclude = ['password']
 // enable query caching by default
 grails.hibernate.cache.queries = true
 
+//enabling jquery
+grails.views.javascript.library="jquery"
+
+
 // set per-environment serverURL stem for creating absolute links
 environments {
     development {
@@ -86,7 +90,14 @@ log4j = {
             'org.codehaus.groovy.grails.commons', // core / classloading
             'org.codehaus.groovy.grails.plugins', // plugins
             'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
-            'org.springframework',
+            //'org.springframework',
             'org.hibernate',
             'net.sf.ehcache.hibernate'
+
+    debug 'com.mongodb',
+            'org.bson',
+            'com.gmongo',
+            'org.grails.datastore.gorm.mongo',
+            'org.grails.datastore.mapping.mongo',
+            'org.springframework.data.mongodb'
 }

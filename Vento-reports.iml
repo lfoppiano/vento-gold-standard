@@ -66,7 +66,10 @@
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-gorm-test/jars/grails-datastore-gorm-test-1.0.5.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../frameworks/grails/grails-datastore-gorm-mongo-1.0.0.RC5-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../frameworks/grails/mongo-java-driver-2.7.1-sources.jar!/" />
+        </SOURCES>
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
       </library>
     </orderEntry>

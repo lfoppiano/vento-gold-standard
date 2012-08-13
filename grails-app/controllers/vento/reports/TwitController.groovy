@@ -1,5 +1,6 @@
 package vento.reports
 
+import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 import org.vento.statistics.general.GeneralStatisticRow
 
@@ -11,29 +12,55 @@ class TwitController {
         redirect(action: "menu", params: params)
     }
 
-    def list() {
-        def twitInstanceList = []
-        def twitInstanceTotal = 0
+    def data() {
 
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        params.offset = params.iDisplayStart ?: 0
+        params.max = Math.min(params.iDisplayLength ? params.int('iDisplayLength') : 10, 100)
 
+        def propertiesToRender = [
+                'id',
+                'query',
+                'text',
+                'score',
+                'referenceScore',
+                'createdAt'
+        ]
+        def dataToRender = [:]
+        dataToRender.aaData = []
 
+        def rawData = []
         if (params.query) {
-            twitInstanceList = Twit.findAllByQuery(params.query, params)
-            twitInstanceTotal = Twit.countByQuery(params.query)
+            rawData = Twit.findAllByQuery(params.query, params)
+            dataToRender.iTotalRecords = Twit.countByQuery(params.query)
         } else {
-            twitInstanceList = Twit.list(params)
-            twitInstanceTotal = Twit.count()
+            rawData = Twit.list(params)
+            dataToRender.iTotalRecords = Twit.count()
         }
 
-        [twitInstanceList: twitInstanceList, twitInstanceTotal: twitInstanceTotal]
+        dataToRender.iTotalDisplayRecords = dataToRender.iTotalRecords
+
+        rawData.each { twit ->
+            def record = []
+
+            propertiesToRender.each {
+                record << twit."${it}"
+            }
+            dataToRender.aaData << record
+
+        }
+
+        render dataToRender as JSON
+    }
+
+    def list() {
+        //Work done with JavaScript. See data method.
     }
 
     def generalStatistics() {
         def totalElements = Twit.count()
 
         def queries = Twit.queries.list()
-        def totalQueries  = queries.size()
+        def totalQueries = queries.size()
 
         def statisticList = []
 

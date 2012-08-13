@@ -5,6 +5,10 @@
       <configuration>
         <webroots>
           <root url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/jquery-1.7.1/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/jquery-datatables-1.7.5/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/jquery-ui-1.8.15/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/twitter-bootstrap-2.0.1.22/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/twitter-bootstrap-2.0.1.22/grails-app/views" relative="/" />
         </webroots>
         <sourceRoots />
       </configuration>
@@ -25,6 +29,13 @@
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/jquery-1.7.1/grails-app/services" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/jquery-1.7.1/grails-app/taglib" isTestSource="false" />
     </content>
+    <content url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/jquery-datatables-1.7.5">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/jquery-datatables-1.7.5/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/jquery-ui-1.8.15">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/jquery-ui-1.8.15/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/jquery-ui-1.8.15/grails-app/taglib" isTestSource="false" />
+    </content>
     <content url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/mongodb-1.0.0.RC5" />
     <content url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/resources-1.1.6">
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/resources-1.1.6/src/java" isTestSource="false" />
@@ -33,6 +44,10 @@
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/resources-1.1.6/grails-app/taglib" isTestSource="false" />
     </content>
     <content url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/tomcat-2.0.3" />
+    <content url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/twitter-bootstrap-2.0.1.22">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/twitter-bootstrap-2.0.1.22/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/twitter-bootstrap-2.0.1.22/grails-app/taglib" isTestSource="false" />
+    </content>
     <content url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/webxml-1.4.1">
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.3/projects/vento-reports/plugins/webxml-1.4.1/src/groovy" isTestSource="false" />
     </content>
@@ -61,7 +76,10 @@
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-gorm-test/jars/grails-datastore-gorm-test-1.0.5.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../frameworks/grails/grails-datastore-gorm-mongo-1.0.0.RC5-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../frameworks/grails/mongo-java-driver-2.7.1-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
   </component>

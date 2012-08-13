@@ -5,6 +5,43 @@
     <meta name="layout" content="main">
     <g:set var="entityName" value="${message(code: 'twit.label', default: 'Twit')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
+
+    <jqDT:resources/>
+    <g:javascript>
+         $(document).ready(function() {
+            var query = '${params.query}';
+
+            $('#twits').dataTable({
+               sScrollY: '70%',
+               bProcessing: true,
+               bServerSide: true,
+               sAjaxSource: '${request.contextPath + '/twit/data.json'}' ,
+               "fnServerData": function ( sSource, aoData, fnCallback ) {
+                    aoData.push( {name: 'query', value: query } );
+
+                    $.getJSON( sSource, aoData, function (json) {
+                        fnCallback(json);
+                    });
+                },
+                /*
+                    To be used when datatables plugin version > 1.8.2
+                "fnServerParams": function ( aoData ) {
+                    aoData.push( { name: 'query', value: query } );
+                },*/
+               sPaginationType: "full_numbers",
+               aoColumns: [
+                    /* Id */ {bVisible: false},
+                    /* Query */ null,
+                    /* Text */  null,
+                    /* Score */ null,
+                    /* Ref SCore */ null,
+                    /* Date */ null
+               ]
+
+            });
+         });
+    </g:javascript>
+
 </head>
 
 <body>
@@ -24,35 +61,29 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <table>
+
+    <table id="twits">
         <thead>
         <tr>
-            <g:sortableColumn params="${params}" property="query" title="${message(code: 'twit.query.label', default: 'Query')}"/>
-            <g:sortableColumn params="${params}" property="text" title="${message(code: 'twit.text.label', default: 'Text')}"/>
-            <g:sortableColumn params="${params}" property="score" title="${message(code: 'twit.score.label', default: 'Score')}"/>
-            <g:sortableColumn params="${params}" property="referenceScore"
-                              title="${message(code: 'twit.referenceScore.label', default: 'Reference Score')}"/>
-
+            <th>Id</th>
+            <th>Query</th>
+            <th>Text</th>
+            <th>Score</th>
+            <th>Ref Score</th>
+            <th>Date</th>
         </tr>
         </thead>
         <tbody>
-        <g:each in="${twitInstanceList}" status="i" var="twitInstance">
-            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-
-                <td><g:link action="show"
-                            id="${twitInstance.id}">${fieldValue(bean: twitInstance, field: "query")}</g:link></td>
-                <td>${fieldValue(bean: twitInstance, field: "text")}</td>
-                <td>${fieldValue(bean: twitInstance, field: "score")}</td>
-                <td>${fieldValue(bean: twitInstance, field: "referenceScore")}</td>
-
-            </tr>
-        </g:each>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
         </tbody>
     </table>
-
-    <div class="pagination">
-        <g:paginate total="${twitInstanceTotal}" params="${params}"/>
-    </div>
 </div>
 </body>
 </html>
