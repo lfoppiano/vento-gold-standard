@@ -38,5 +38,23 @@ public class Twit {
                 distinct("query")
             }
         }
+
+        selectByQuery { query ->
+            eq 'query', query
+        }
+
+        searchTwit { search ->
+            or {
+                like 'text', "%${search}%"
+                like 'score', "%${search}%"
+                like 'referenceScore', "%${search}%"
+            }
+        }
+
+        searchOnQuery { query, search ->
+            selectByQuery(query)
+            searchTwit(search)
+
+        }
     }
 }
