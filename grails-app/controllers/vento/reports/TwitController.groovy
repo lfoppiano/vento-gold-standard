@@ -25,6 +25,10 @@ class TwitController {
                 'referenceScore',
                 'createdAt'
         ]
+
+        params.sort = propertiesToRender[Integer.parseInt(params.iSortCol_0)]
+        params.order = params.sSortDir_0
+
         def dataToRender = [:]
         dataToRender.aaData = []
 
@@ -38,8 +42,14 @@ class TwitController {
             rawData = query.list(params)
             dataToRender.iTotalRecords = query.count()
         } else {
-            rawData = Twit.list(params)
-            dataToRender.iTotalRecords = Twit.count()
+            if (params.sSearch) {
+                def query = Twit.searchTwit(params.sSearch)
+                rawData = query.list(params)
+                dataToRender.iTotalRecords = query.count()
+            } else {
+                rawData = Twit.list(params)
+                dataToRender.iTotalRecords = Twit.count()
+            }
         }
 
         dataToRender.iTotalDisplayRecords = dataToRender.iTotalRecords

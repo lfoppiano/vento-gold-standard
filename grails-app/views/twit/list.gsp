@@ -30,7 +30,7 @@
                 },*/
                sPaginationType: "full_numbers",
                aoColumns: [
-                    /* Id */ {bVisible: false},
+                    /* Id */ {bSortable: false, bVisible: false},
                     /* Query */ null,
                     /* Text */  null,
                     /* Score */ null,
@@ -38,7 +38,7 @@
                     /* Date */ null
                ]
 
-            });
+            }).fnFilterOnReturn();
          });
     </g:javascript>
 
