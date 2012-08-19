@@ -35,15 +35,15 @@ class TwitController {
         def rawData = []
 
         if (params.query) {
-            def query = Twit.selectByQuery(params.query)
+            def query = Twit.byQuery(params.query)
             if(params.sSearch){
-                query = Twit.searchOnQuery(params.query, params.sSearch)
+                query = Twit.byQueryAndSearch(params.query, params.sSearch)
             }
             rawData = query.list(params)
             dataToRender.iTotalRecords = query.count()
         } else {
             if (params.sSearch) {
-                def query = Twit.searchTwit(params.sSearch)
+                def query = Twit.search(params.sSearch)
                 rawData = query.list(params)
                 dataToRender.iTotalRecords = query.count()
             } else {

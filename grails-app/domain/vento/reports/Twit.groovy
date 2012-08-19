@@ -39,11 +39,11 @@ public class Twit {
             }
         }
 
-        selectByQuery { query ->
+        byQuery { query ->
             eq 'query', query
         }
 
-        searchTwit { search ->
+        search { search ->
             or {
                 like 'text', "%${search}%"
                 like 'score', "%${search}%"
@@ -51,9 +51,9 @@ public class Twit {
             }
         }
 
-        searchOnQuery { query, search ->
-            selectByQuery(query)
-            searchTwit(search)
+        byQueryAndSearch { query, search ->
+            byQuery(query)
+            search(search)
 
         }
     }
