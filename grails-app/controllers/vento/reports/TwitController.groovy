@@ -36,7 +36,7 @@ class TwitController {
 
         if (params.query) {
             def query = Twit.byQuery(params.query)
-            if(params.sSearch){
+            if (params.sSearch) {
                 query = Twit.byQueryAndSearch(params.query, params.sSearch)
             }
             rawData = query.list(params)

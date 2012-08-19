@@ -6,7 +6,7 @@
     <g:set var="entityName" value="${message(code: 'twit.label', default: 'Twit')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
 
-    <jqDT:resources />
+    <jqDT:resources/>
     <g:javascript>
          $(document).ready(function() {
             $('#people').dataTable({
@@ -20,7 +20,6 @@
             });
          });
     </g:javascript>
-
 
 </head>
 

@@ -59,9 +59,21 @@ grails.exceptionresolver.params.exclude = ['password']
 grails.hibernate.cache.queries = true
 
 //enabling jquery
-grails.views.javascript.library="jquery"
+grails.views.javascript.library = "jquery"
 
+/*grails.plugins.twitterbootstrap.fixtaglib = true
+grails.plugins.twitterbootstrap.defaultBundle = false
 
+grails.resources.modules = {
+
+    'style' {
+        dependsOn 'bootstrap'
+        resource url: 'less/custom-bootstrap.less', attrs: [rel:
+                "stylesheet/less", type: 'css'], bundle: 'bundle_style'
+    }
+
+}
+  */
 // set per-environment serverURL stem for creating absolute links
 environments {
     development {

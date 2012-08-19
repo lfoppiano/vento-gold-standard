@@ -8,10 +8,14 @@
 
     <jqDT:resources/>
     <g:javascript>
+
+        var oTable;
+        var selected =  new Array();
+
          $(document).ready(function() {
             var query = '${params.query}';
 
-            $('#twits').dataTable({
+            oTable = $('#twits').dataTable({
                sScrollY: '70%',
                bProcessing: true,
                bServerSide: true,
@@ -36,7 +40,45 @@
                     /* Score */ null,
                     /* Ref SCore */ null,
                     /* Date */ null
-               ]
+               ],
+               "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
+                    $('#twits tbody tr').each( function () {
+                        if (jQuery.inArray(aData[0], selected)!=-1) {
+                            $(this).addClass('row_selected');
+                        }
+                    });
+                    return nRow;
+                },
+                "fnDrawCallback": function ( oSettings ) {
+                    $('#twits tbody tr').each( function () {
+                        var iPos = oTable.fnGetPosition( this );
+                        if (iPos!=null) {
+                            var aData = oTable.fnGetData( iPos );
+                            if (jQuery.inArray(aData[0], selected)!=-1)
+                                $(this).addClass('row_selected');
+                        }
+                        $(this).click( function () {
+                            var iPos = oTable.fnGetPosition( this );
+                            var aData = oTable.fnGetData( iPos );
+                            var iId = aData[0];
+                            is_in_array = jQuery.inArray(iId, selected);
+                            if (is_in_array==-1) {
+                                selected[selected.length]=iId;
+                            }
+                            else {
+                                selected = jQuery.grep(selected, function(value) {
+                                    return value != iId;
+                                });
+                            }
+                            if ( $(this).hasClass('row_selected') ) {
+                                $(this).removeClass('row_selected');
+                            }
+                            else {
+                                $(this).addClass('row_selected');
+                            }
+                        });
+                    });
+                }
 
             }).fnFilterOnReturn();
          });
