@@ -8,11 +8,11 @@
 
     <jqDT:resources/>
     <g:javascript>
-
         var oTable;
         var selected =  new Array();
 
          $(document).ready(function() {
+
             var query = '${params.query}';
 
             oTable = $('#twits').dataTable({
@@ -38,9 +38,10 @@
                     /* Query */ null,
                     /* Text */  null,
                     /* Score */ null,
-                    /* Ref SCore */ null,
+                    /* Ref SCore */ {bVisible: false},
                     /* Date */ null
                ],
+
                "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
                     $('#twits tbody tr').each( function () {
                         if (jQuery.inArray(aData[0], selected)!=-1) {
@@ -49,7 +50,26 @@
                     });
                     return nRow;
                 },
+
                 "fnDrawCallback": function ( oSettings ) {
+                    //edit of cells
+                    %{--$('#twits tbody td').editable(--}%
+                        %{--'${request.contextPath + '/twit/update'}',--}%
+                        %{--{--}%
+                        %{--"data": function(value, settings) {--}%
+                            %{--//console.log(value)--}%
+                            %{--var data = oTable.fnGetData(this.parentNode)--}%
+                            %{--var infos =  {'id': data[0], 'value': value}--}%
+                            %{--console.log(infos)--}%
+                            %{--return infos--}%
+                        %{--},--}%
+                        %{--"callback": function( sValue, y ) {--}%
+                            %{--oTable.fnDraw();--}%
+                        %{--},--}%
+                        %{--"height": "14px"--}%
+                    %{--} );--}%
+
+                    //select of cells
                     $('#twits tbody tr').each( function () {
                         var iPos = oTable.fnGetPosition( this );
                         if (iPos!=null) {
@@ -81,6 +101,24 @@
                 }
 
             }).fnFilterOnReturn();
+
+            $('#toTestDataButton').live('click', function() {
+                console.log("bao")
+                console.log(selected)
+
+                var parameters = {
+                    'id': 'diocane',
+                    'twits': selected
+
+                }
+                $.post('${createLink(controller: 'twit', action: 'toTestData')}', parameters , function(data, status) {
+                    var result = $(data)
+                    console.log("result" + result)
+                }).success(function(){
+                    console.log("successs")
+                });
+            });
+
          });
     </g:javascript>
 
@@ -103,6 +141,13 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
+
+    <fieldset class="buttons">
+        <g:submitButton id="toTrainingDataButton" name="toTrainingDataButton" class="save"
+                        value="${message(code: 'default.button.toTraining.label', default: 'Send to training data')}"/>
+        <g:submitButton id="toTestDataButton" name="toTestDataButton" class="save"
+                        value="${message(code: 'default.button.toTest.label', default: 'Send to test data')}"/>
+    </fieldset>
 
     <table id="twits">
         <thead>

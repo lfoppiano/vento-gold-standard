@@ -23,6 +23,7 @@
     <g:layoutHead/>
 
     <g:javascript src="jquery-datatable-ext.js"/>
+    <g:javascript src="jquery.jeditable.mini.js"/>
 </head>
 
 <body>

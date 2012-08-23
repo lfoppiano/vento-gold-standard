@@ -140,6 +140,25 @@ class TwitController {
         [twitInstance: twitInstance]
     }
 
+    def toTestData() {
+
+        def parameters = params.'twits[]' as List
+
+        println parameters
+
+        parameters.each {
+            println it
+            def item = Twit.findById(it)
+
+            println item
+
+            item.save('collection' : 'stronzo')
+        }
+
+        return parameters
+
+    }
+
     def update() {
         def twitInstance = Twit.get(params.id)
         if (!twitInstance) {
