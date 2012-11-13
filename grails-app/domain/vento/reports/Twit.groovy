@@ -1,6 +1,9 @@
 package vento.reports
 
+import org.bson.types.ObjectId
+
 public class Twit {
+    //ObjectId _id
     String id;
 
     String text;
@@ -20,6 +23,8 @@ public class Twit {
     String referenceScore;
 
     String createdAt;
+
+    //static hasMany = [scores: Score]
 
     static constraints = {
     }

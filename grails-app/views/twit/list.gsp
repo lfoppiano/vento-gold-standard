@@ -53,21 +53,20 @@
 
                 "fnDrawCallback": function ( oSettings ) {
                     //edit of cells
-                    %{--$('#twits tbody td').editable(--}%
-                        %{--'${request.contextPath + '/twit/update'}',--}%
-                        %{--{--}%
-                        %{--"data": function(value, settings) {--}%
-                            %{--//console.log(value)--}%
-                            %{--var data = oTable.fnGetData(this.parentNode)--}%
-                            %{--var infos =  {'id': data[0], 'value': value}--}%
-                            %{--console.log(infos)--}%
-                            %{--return infos--}%
-                        %{--},--}%
-                        %{--"callback": function( sValue, y ) {--}%
-                            %{--oTable.fnDraw();--}%
-                        %{--},--}%
-                        %{--"height": "14px"--}%
-                    %{--} );--}%
+                    $('#twits tbody td').editable(
+                        '${request.contextPath + '/twit/update'}',
+                        {
+                        "callback": function( sValue, y ) {
+                            oTable.fnDraw();
+                        },
+                        "submitdata": function ( value, settings ) {
+                            return {
+                                "id": oTable.fnGetData(this.parentNode)[0],
+                                "value": value
+                            };
+                        },
+                        "height": "14px"
+                    } );
 
                     //select of cells
                     $('#twits tbody tr').each( function () {
