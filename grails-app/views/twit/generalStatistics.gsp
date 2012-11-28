@@ -50,7 +50,7 @@
 
 
 
-    %{--<table>
+    <table>
         <thead>
         <tr>
             <g:sortableColumn params="${params}" property="query"
@@ -83,11 +83,11 @@
             </tr>
         </g:each>
         </tbody>
-    </table>--}%
+    </table>
 
-    <div class="pagination">
+    %{--<div class="pagination">
         <g:paginate total="${statisticList.size()}" params="${params}"/>
-    </div>
+    </div>--}%
 </div>
 </body>
 </html>
