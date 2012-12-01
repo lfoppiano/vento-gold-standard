@@ -34,7 +34,7 @@
                 },*/
                sPaginationType: "full_numbers",
                aoColumns: [
-                    /* Id */ {bSortable: false, bVisible: false},
+                    /* Id */ null, //{bSortable: false, bVisible: false},
                     /* Query */ null,
                     /* Text */  null,
                     /* Score */ null,
@@ -52,6 +52,7 @@
                 },
 
                 "fnDrawCallback": function ( oSettings ) {
+
                     //edit of cells
                     $('#twits tbody td').editable(
                         '${request.contextPath + '/twit/update'}',
@@ -60,6 +61,7 @@
                             oTable.fnDraw();
                         },
                         "submitdata": function ( value, settings ) {
+                            //console.log(oTable.fnGetData(this.parentNode)[0])
                             return {
                                 "id": oTable.fnGetData(this.parentNode)[0],
                                 "value": value

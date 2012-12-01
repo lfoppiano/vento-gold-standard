@@ -58,12 +58,11 @@ class TwitController {
             def record = []
 
             propertiesToRender.each {
-                record << twit."${it}"
+                def par = twit."${it}"
+                record << par.toString()
             }
             dataToRender.aaData << record
-
         }
-
         render dataToRender as JSON
     }
 
@@ -167,7 +166,7 @@ class TwitController {
             return
         }
 
-        if (params.version) {
+        if (params?.version) {
             def version = params.version.toLong()
             if (twitInstance.version > version) {
                 twitInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
@@ -180,7 +179,7 @@ class TwitController {
 
         twitInstance.properties = params
 
-        if (!twitInstance.save(flush: true)) {
+        if (!twitInstance.save()) {
             render(view: "edit", model: [twitInstance: twitInstance])
             return
         }

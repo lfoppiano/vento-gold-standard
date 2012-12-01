@@ -3,8 +3,9 @@ package vento.reports
 import org.bson.types.ObjectId
 
 public class Twit {
-    //ObjectId _id
-    String id;
+    ObjectId id
+
+    String twitterId
 
     String text;
     String geo;
