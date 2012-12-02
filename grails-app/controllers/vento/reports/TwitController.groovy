@@ -179,7 +179,7 @@ class TwitController {
 
         twitInstance.properties = params
 
-        if (!twitInstance.save()) {
+        if (!twitInstance.save(failOnError: true)) {
             render(view: "edit", model: [twitInstance: twitInstance])
             return
         }

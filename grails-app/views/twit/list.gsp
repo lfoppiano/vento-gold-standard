@@ -34,7 +34,7 @@
                 },*/
                sPaginationType: "full_numbers",
                aoColumns: [
-                    /* Id */ null, //{bSortable: false, bVisible: false},
+                    /* Id */ {bSortable: false, bVisible: false},
                     /* Query */ null,
                     /* Text */  null,
                     /* Score */ null,
@@ -61,7 +61,9 @@
                             oTable.fnDraw();
                         },
                         "submitdata": function ( value, settings ) {
-                            //console.log(oTable.fnGetData(this.parentNode)[0])
+                            console.log(this)
+                            console.log(oTable.fnGetData(this.parentNode))
+                            console.log(value)
                             return {
                                 "id": oTable.fnGetData(this.parentNode)[0],
                                 "value": value

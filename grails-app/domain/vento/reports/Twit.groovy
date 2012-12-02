@@ -28,6 +28,15 @@ public class Twit {
     //static hasMany = [scores: Score]
 
     static constraints = {
+        geo nullable: true
+        toUserIdStr nullable: true
+        source nullable: true
+        isoLanguageCode nullable: true
+        fromUserIdStr nullable: true
+        fromUser nullable: true
+        score nullable: true
+        referenceScore nullable: true
+        createdAt nullable: true
     }
 
     static mapWith = "mongo"
