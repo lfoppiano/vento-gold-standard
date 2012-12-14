@@ -62,7 +62,7 @@
                             oTable.fnDraw();
                         },
                         "submitdata": function ( value, settings ) {
-                            console.log(oTable.fnGetPosition(this))
+                            //console.log(oTable.fnGetPosition(this))
                             return {
                                 "id": oTable.fnGetData(this.parentNode)[0],
 				                "column": oTable.fnGetPosition( this )[2]
