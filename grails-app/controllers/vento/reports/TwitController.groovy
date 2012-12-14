@@ -177,7 +177,8 @@ class TwitController {
             }
         }
 
-        twitInstance.properties = params
+        //by default the params.value = score
+        twitInstance.score = params.value
 
         if (!twitInstance.save(failOnError: true)) {
             render(view: "edit", model: [twitInstance: twitInstance])

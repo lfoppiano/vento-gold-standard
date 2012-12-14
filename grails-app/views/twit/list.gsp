@@ -36,7 +36,7 @@
                aoColumns: [
                     /* Id */ {bSortable: false, bVisible: false},
                     /* Query */ null,
-                    /* Text */  {"sClass": "editable" },
+                    /* Text */  null, //{"sClass": "editable" },     //to be fixed also how the controller handle the update, by defaul assume that the 'value' is the score...
                     /* Score */ {"sClass": "editable" },
                     /* Ref SCore */ {bVisible: false},
                     /* Date */ null
@@ -57,16 +57,15 @@
                     $('td.editable').editable(
                         '${request.contextPath + '/twit/update'}',
                         {
+
                         "callback": function( sValue, y ) {
                             oTable.fnDraw();
                         },
                         "submitdata": function ( value, settings ) {
-                            console.log(this)
-                            console.log(oTable.fnGetData(this.parentNode))
-                            console.log(value)
+                            console.log(oTable.fnGetPosition(this))
                             return {
                                 "id": oTable.fnGetData(this.parentNode)[0],
-                                "value": value
+				                "column": oTable.fnGetPosition( this )[2]
                             };
                         },
                         "height": "14px"
@@ -155,7 +154,7 @@
     <table id="twits">
         <thead>
         <tr>
-            <th>Id</th>
+            <th>id</th>
             <th>Query</th>
             <th>Text</th>
             <th>Score</th>
