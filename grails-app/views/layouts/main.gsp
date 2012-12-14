@@ -21,6 +21,7 @@
     <r:layoutResources/>
 
     <g:layoutHead/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable_ext.css')}" type="text/css">
 
     <g:javascript src="jquery-datatable-ext.js"/>
     <g:javascript src="jquery.jeditable.mini.js"/>

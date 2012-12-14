@@ -36,8 +36,8 @@
                aoColumns: [
                     /* Id */ {bSortable: false, bVisible: false},
                     /* Query */ null,
-                    /* Text */  null,
-                    /* Score */ null,
+                    /* Text */  {"sClass": "editable" },
+                    /* Score */ {"sClass": "editable" },
                     /* Ref SCore */ {bVisible: false},
                     /* Date */ null
                ],
@@ -54,7 +54,7 @@
                 "fnDrawCallback": function ( oSettings ) {
 
                     //edit of cells
-                    $('#twits tbody td').editable(
+                    $('td.editable').editable(
                         '${request.contextPath + '/twit/update'}',
                         {
                         "callback": function( sValue, y ) {
