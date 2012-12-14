@@ -74,7 +74,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="Vento-reports-grailsPlugins" />
-    <orderEntry type="library" name="grails-2.1.1" level="application" />
+    <orderEntry type="library" name="grails-2.1.2" level="application" />
   </component>
 </module>
 
