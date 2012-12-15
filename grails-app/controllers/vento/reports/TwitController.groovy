@@ -139,22 +139,43 @@ class TwitController {
         [twitInstance: twitInstance]
     }
 
-    def toTestData() {
+    /** POST here to move data to the test collection **/
+    def testData() {
 
-        def parameters = params.'twits[]' as List
+        def parameters = params?.'id[]'?.split(",")
 
-        println parameters
+        //println parameters
 
         parameters.each {
-            println it
-            def item = Twit.findById(it)
+            //println it
+            def item = Twit.get(it)
 
-            println item
+            def itemTest = new TwitValidation(
+                    twitterId: item.twitterId,
+                    text: item.text,
+                    geo:  item.geo,
+                    toUserIdStr: item.toUserIdStr,
+                    source: item.source,
+                    isoLanguageCode: item.isoLanguageCode,
+                    fromUserIdStr: item.fromUserIdStr,
+                    query: item.query,
+                    fromUser:  item.fromUser,
+                    score: item.score,
+                    referenceScore: item.referenceScore,
+                    createdAt: item.createdAt
+            )
 
-            item.save('collection' : 'stronzo')
+            //If uncommented the driver will think to an update instead of an insert and it will crash trying
+            // to gather information about the 'previous' object (the one you are supposed to update)
+            //itemTest.id = item.id
+
+
+             itemTest.save(failOnError: true)
+             item.delete(failOnError: true)
+
         }
 
-        return parameters
+        return
 
     }
 
@@ -186,7 +207,8 @@ class TwitController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'twit.label', default: 'Twit'), twitInstance.id])
-        redirect(action: "show", id: twitInstance.id)
+        //TODO: to be changed
+        return redirect(action: "show", id: twitInstance.id)
     }
 
     def delete() {

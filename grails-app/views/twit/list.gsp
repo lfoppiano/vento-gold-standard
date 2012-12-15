@@ -105,19 +105,20 @@
             }).fnFilterOnReturn();
 
             $('#toTestDataButton').live('click', function() {
-                console.log("bao")
                 console.log(selected)
 
                 var parameters = {
-                    'id': 'diocane',
-                    'twits': selected
+                    'id[]': [selected]
+                    //'twits': selected
 
                 }
-                $.post('${createLink(controller: 'twit', action: 'toTestData')}', parameters , function(data, status) {
+                $.post('${createLink(controller: 'twit', action: 'testData')}', parameters , function(data, status) {
                     var result = $(data)
                     console.log("result" + result)
                 }).success(function(){
                     console.log("successs")
+                }).error(function(){
+                    console.log("ERROR")
                 });
             });
 
