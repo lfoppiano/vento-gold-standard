@@ -59,7 +59,8 @@
                         {
 
                         "callback": function( sValue, y ) {
-                            oTable.fnDraw();
+                            //false to disable the resorting of the table
+                            oTable.fnDraw(false);
                         },
                         "submitdata": function ( value, settings ) {
                             //console.log(oTable.fnGetPosition(this))

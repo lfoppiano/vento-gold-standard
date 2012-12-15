@@ -207,8 +207,8 @@ class TwitController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'twit.label', default: 'Twit'), twitInstance.id])
-        //TODO: to be changed
-        return redirect(action: "show", id: twitInstance.id)
+
+        render twitInstance.score //as JSON
     }
 
     def delete() {
