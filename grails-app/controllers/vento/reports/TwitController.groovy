@@ -190,7 +190,7 @@ class TwitController {
             //println it
             def item = Twit.get(it)
 
-            def itemTest = new TwitTraining(
+            def newItem = new TwitTraining(
                     twitterId: item.twitterId,
                     text: item.text,
                     geo:  item.geo,
@@ -210,12 +210,12 @@ class TwitController {
             //itemTest.id = item.id
 
 
-            itemTest.save(failOnError: true)
+            newItem.save(failOnError: true)
             item.delete(failOnError: true)
 
         }
 
-        return
+        render "OK"
 
     }
 

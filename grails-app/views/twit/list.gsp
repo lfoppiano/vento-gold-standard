@@ -115,7 +115,7 @@
                 $.post('${createLink(controller: 'twit', action: 'testData')}', parameters , function(data, status) {
                     var result = $(data)
                 }).success(function(){
-                    console.log("successs")
+                    console.log("successs to send data to testing")
                     selected = new Array()
                     oTable.fnDraw(false)
                 });
@@ -128,9 +128,10 @@
                     //'twits': selected
 
                 }
-                $.post('${createLink(controller: 'twit', action: 'testData')}', parameters , function(data, status) {
+                $.post('${createLink(controller: 'twit', action: 'trainingData')}', parameters , function(data, status) {
                     var result = $(data)
                 }).success(function(){
+                    console.log("successs to send data to training")
                     selected = new Array()
                     oTable.fnDraw(false)
                 });
