@@ -106,7 +106,6 @@
             }).fnFilterOnReturn();
 
             $('#toTestDataButton').live('click', function() {
-                console.log(selected)
 
                 var parameters = {
                     'id[]': [selected]
@@ -115,11 +114,25 @@
                 }
                 $.post('${createLink(controller: 'twit', action: 'testData')}', parameters , function(data, status) {
                     var result = $(data)
-                    console.log("result" + result)
                 }).success(function(){
                     console.log("successs")
-                }).error(function(){
-                    console.log("ERROR")
+                    selected = new Array()
+                    oTable.fnDraw(false)
+                });
+            });
+
+            $('#toTrainingDataButton').live('click', function() {
+
+                var parameters = {
+                    'id[]': [selected]
+                    //'twits': selected
+
+                }
+                $.post('${createLink(controller: 'twit', action: 'testData')}', parameters , function(data, status) {
+                    var result = $(data)
+                }).success(function(){
+                    selected = new Array()
+                    oTable.fnDraw(false)
                 });
             });
 

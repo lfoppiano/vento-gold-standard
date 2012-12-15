@@ -150,7 +150,7 @@ class TwitController {
             //println it
             def item = Twit.get(it)
 
-            def itemTest = new TwitValidation(
+            def itemTest = new TwitTesting(
                     twitterId: item.twitterId,
                     text: item.text,
                     geo:  item.geo,
@@ -172,6 +172,46 @@ class TwitController {
 
              itemTest.save(failOnError: true)
              item.delete(failOnError: true)
+
+        }
+
+        render "OK"
+
+    }
+
+    /** POST here to move data to the training collection **/
+    def trainingData() {
+
+        def parameters = params?.'id[]'?.split(",")
+
+        //println parameters
+
+        parameters.each {
+            //println it
+            def item = Twit.get(it)
+
+            def itemTest = new TwitTraining(
+                    twitterId: item.twitterId,
+                    text: item.text,
+                    geo:  item.geo,
+                    toUserIdStr: item.toUserIdStr,
+                    source: item.source,
+                    isoLanguageCode: item.isoLanguageCode,
+                    fromUserIdStr: item.fromUserIdStr,
+                    query: item.query,
+                    fromUser:  item.fromUser,
+                    score: item.score,
+                    referenceScore: item.referenceScore,
+                    createdAt: item.createdAt
+            )
+
+            //If uncommented the driver will think to an update instead of an insert and it will crash trying
+            // to gather information about the 'previous' object (the one you are supposed to update)
+            //itemTest.id = item.id
+
+
+            itemTest.save(failOnError: true)
+            item.delete(failOnError: true)
 
         }
 
