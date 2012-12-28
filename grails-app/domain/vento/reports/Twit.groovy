@@ -1,6 +1,7 @@
 package vento.reports
 
 import org.bson.types.ObjectId
+import org.vento.utility.VentoTypes
 
 public class Twit {
     ObjectId id
@@ -22,8 +23,12 @@ public class Twit {
     String score;
 
     String referenceScore;
-
     String createdAt;
+
+    List scoreHistories
+
+    //It can be TRAINING, TESTING, CLASSIFICATION (default when is empty or null)
+    String type;
 
     //static hasMany = [scores: Score]
 
@@ -37,6 +42,12 @@ public class Twit {
         score nullable: true
         referenceScore nullable: true
         createdAt nullable: true
+        type nullable: true, inList: [
+                VentoTypes.CLASSIFICATION,
+                VentoTypes.TESTING,
+                VentoTypes.TRAINING,
+                VentoTypes.TRAINING_STORESET
+        ]
     }
 
     static mapWith = "mongo"
@@ -54,8 +65,21 @@ public class Twit {
             }
         }
 
+        onlyClassification {
+            eq 'type', VentoTypes.CLASSIFICATION
+            not {
+                eq 'score', null
+            }
+        }
+
         byQuery { query ->
             eq 'query', query
+            onlyClassification()
+        }
+
+        byQueryOnlyClassification { query ->
+            eq 'query', query
+            onlyClassification()
         }
 
         search { searchItem ->
@@ -64,11 +88,23 @@ public class Twit {
                 like 'score', "%${searchItem}%"
                 like 'referenceScore', "%${searchItem}%"
             }
+            and {
+                onlyClassification()
+            }
+        }
+
+        searchOnlyClassification{ searchItem ->
+            search(searchItem)
+            onlyClassification()
         }
 
         byQueryAndSearch { query, searchItem ->
             byQuery(query)
             search(searchItem)
+        }
+
+        byType { type ->
+            eq 'type', type
         }
     }
 }

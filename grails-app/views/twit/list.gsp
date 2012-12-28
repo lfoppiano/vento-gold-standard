@@ -37,9 +37,10 @@
                     /* Id */ {bSortable: false, bVisible: false},
                     /* Query */ null,
                     /* Text */  null, //{"sClass": "editable" },     //to be fixed also how the controller handle the update, by defaul assume that the 'value' is the score...
-                    /* Score */ {"sClass": "editable" },
-                    /* Ref SCore */ {bVisible: false},
-                    /* Date */ null
+                    /* Score */ null,
+                    /* Ref SCore */ {"sClass": "editable" },
+                    /* Date */ null,
+                    /* Type */ null
                ],
 
                "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
@@ -138,6 +139,7 @@
             });
 
          });
+         $.fn.editable.defaults.select = true
     </g:javascript>
 
 </head>
@@ -176,10 +178,12 @@
             <th>Score</th>
             <th>Ref Score</th>
             <th>Date</th>
+            <th>Type</th>
         </tr>
         </thead>
         <tbody>
         <tr>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>

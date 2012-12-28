@@ -3,6 +3,7 @@ package vento.reports
 import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 import org.vento.statistics.general.GeneralStatisticRow
+import org.vento.utility.VentoTypes
 
 class TwitController {
 
@@ -23,7 +24,8 @@ class TwitController {
                 'text',
                 'score',
                 'referenceScore',
-                'createdAt'
+                'createdAt',
+                'type'
         ]
 
         params.sort = propertiesToRender[Integer.parseInt(params.iSortCol_0)]
@@ -144,34 +146,12 @@ class TwitController {
 
         def parameters = params?.'id[]'?.split(",")
 
-        //println parameters
-
         parameters.each {
-            //println it
             def item = Twit.get(it)
 
-            def itemTest = new TwitTesting(
-                    twitterId: item.twitterId,
-                    text: item.text,
-                    geo:  item.geo,
-                    toUserIdStr: item.toUserIdStr,
-                    source: item.source,
-                    isoLanguageCode: item.isoLanguageCode,
-                    fromUserIdStr: item.fromUserIdStr,
-                    query: item.query,
-                    fromUser:  item.fromUser,
-                    score: item.score,
-                    referenceScore: item.referenceScore,
-                    createdAt: item.createdAt
-            )
+            item.type = VentoTypes.TESTING
 
-            //If uncommented the driver will think to an update instead of an insert and it will crash trying
-            // to gather information about the 'previous' object (the one you are supposed to update)
-            //itemTest.id = item.id
-
-
-             itemTest.save(failOnError: true)
-             item.delete(failOnError: true)
+            item.save(failOnError: true)
 
         }
 
@@ -183,36 +163,12 @@ class TwitController {
     def trainingData() {
 
         def parameters = params?.'id[]'?.split(",")
-
-        //println parameters
-
         parameters.each {
-            //println it
             def item = Twit.get(it)
 
-            def newItem = new TwitTraining(
-                    twitterId: item.twitterId,
-                    text: item.text,
-                    geo:  item.geo,
-                    toUserIdStr: item.toUserIdStr,
-                    source: item.source,
-                    isoLanguageCode: item.isoLanguageCode,
-                    fromUserIdStr: item.fromUserIdStr,
-                    query: item.query,
-                    fromUser:  item.fromUser,
-                    score: item.score,
-                    referenceScore: item.referenceScore,
-                    createdAt: item.createdAt
-            )
+            item.type = VentoTypes.TRAINING
 
-            //If uncommented the driver will think to an update instead of an insert and it will crash trying
-            // to gather information about the 'previous' object (the one you are supposed to update)
-            //itemTest.id = item.id
-
-
-            newItem.save(failOnError: true)
-            item.delete(failOnError: true)
-
+            item.save(failOnError: true)
         }
 
         render "OK"
@@ -239,6 +195,7 @@ class TwitController {
         }
 
         //by default the params.value = score
+        twitInstance.referenceScore = params.value
         twitInstance.score = params.value
 
         if (!twitInstance.save(failOnError: true)) {
