@@ -7,7 +7,15 @@ environments {
             databaseName = "vento"
         }
     }
-    development_heroku {
+
+    test {
+        dataSource {
+            dbCreate = "update"
+            url = "jdbc:h2:mem:testDb;MVCC=TRUE"
+        }
+    }
+
+    production {
         dataSource {
             username = "grails"
             password = "bao123"
@@ -16,13 +24,8 @@ environments {
             databaseName = "app10645215"
         }
     }
-    test {
-        dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:mem:testDb;MVCC=TRUE"
-        }
-    }
-    production {
+
+    /*production {
         dataSource {
             dbCreate = "update"
             url = "jdbc:h2:prodDb;MVCC=TRUE"
@@ -38,5 +41,5 @@ environments {
                 validationQuery = "SELECT 1"
             }
         }
-    }
+    }*/
 }
