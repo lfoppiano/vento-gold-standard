@@ -7,6 +7,15 @@ environments {
             databaseName = "vento"
         }
     }
+    development_heroku {
+        dataSource {
+            username = "grails"
+            password = "bao123"
+            host = "linus.mongohq.com"
+            port = 10054
+            databaseName = "app10645215"
+        }
+    }
     test {
         dataSource {
             dbCreate = "update"
