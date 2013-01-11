@@ -1,19 +1,17 @@
+
+
 // environment specific settings
 environments {
     development {
-        dataSource {
-            username = "grails"
-            password = "bao123"
-            host = "linus.mongohq.com"
-            port = 10054
-            databaseName = "app10645215"
+
+        grails {
+            mongo {
+                host = "localhost"
+                port = 27018
+                databaseName = "vento"
+            }
         }
 
-        /*dataSource {
-            host = "localhost"
-            port = 27017
-            databaseName = "vento"
-        }*/
     }
 
     test {
@@ -24,12 +22,14 @@ environments {
     }
 
     production {
-        dataSource {
-            username = "grails"
-            password = "bao123"
-            host = "linus.mongohq.com"
-            port = 10054
-            databaseName = "app10645215"
+        grails {
+            mongo {
+                host = "linus.mongohq.com"
+                port = 10054
+                username = "grails"
+                password = "bao123"
+                databaseName = "app10645215"
+            }
         }
     }
 

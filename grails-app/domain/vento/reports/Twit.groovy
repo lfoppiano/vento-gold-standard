@@ -54,7 +54,6 @@ public class Twit {
 
     static mapping = {
         collection "reports"
-        database "vento"
         //cache true
     }
 
