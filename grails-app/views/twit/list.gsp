@@ -36,9 +36,9 @@
                aoColumns: [
                     /* Id */ {bSortable: false, bVisible: false},
                     /* Query */ null,
-                    /* Text */  null, //{"sClass": "editable" },     //to be fixed also how the controller handle the update, by defaul assume that the 'value' is the score...
+                    /* Text */  {sWidth: "40%"}, //{"sClass": "editable" },     //to be fixed also how the controller handle the update, by defaul assume that the 'value' is the score...
                     /* Score */ null,
-                    /* Ref SCore */ {"sClass": "editable" },
+                    /* Ref SCore */ {"sClass": "editable"},
                     /* Date */ null,
                     /* Type */ null
                ],
