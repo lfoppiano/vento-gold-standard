@@ -24,11 +24,14 @@ environments {
     production {
         grails {
             mongo {
-                host = "linus.mongohq.com"
-                port = 10054
+                //host = "linus.mongohq.com"
+                host = "ds031747.mongolab.com"
+                //port = 10054
+                port = 31747
                 username = "grails"
                 password = "bao123"
-                databaseName = "app10645215"
+                //databaseName = "app10645215"
+                databaseName = "heroku_app10645215"
             }
         }
     }
