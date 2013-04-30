@@ -64,6 +64,11 @@ public class Twit {
             }
         }
 
+        queryClassification {
+            queries()
+            onlyClassification()
+        }
+
         onlyClassification {
             eq 'type', VentoTypes.CLASSIFICATION
             not {

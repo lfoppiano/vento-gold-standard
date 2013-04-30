@@ -105,7 +105,7 @@ class TwitController {
     }
 
     def menu() {
-        [twitQueryList: Twit.queries.list().sort()]
+        [twitQueryList: Twit.queryClassification.list().sort()]
     }
 
     def save() {
