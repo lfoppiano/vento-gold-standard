@@ -76,6 +76,10 @@ public class Twit {
             }
         }
 
+        onlyTraining {
+            eq 'type', VentoTypes.TRAINING
+        }
+
         byQuery { query ->
             eq 'query', query
             onlyClassification()
