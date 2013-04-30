@@ -32,11 +32,16 @@
             <td>
                 <g:link action="generalStatistics">General statistics</g:link>
             </td>
-            <td colspan="2">
+            <td colspan="4">
                 <g:link action="list">Show all the entries</g:link>
             </td>
-            <td>Training corpus: ${twitQueryClassificationCount}</td>
-            <td>Classification corpus: ${twitQueryTrainingCount}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Corpus</td>
+            <td>Classification: ${twitQueryClassificationCount}</td>
+            <td>Training: ${twitQueryTrainingCount}</td>
+            <td>Testing: ${twitQueryTestingCount}</td>
         </tr>
         <tr>
             <td colspan="5">

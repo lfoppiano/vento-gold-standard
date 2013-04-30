@@ -107,6 +107,7 @@ class TwitController {
     def menu() {
         [twitQueryClassificationCount: Twit.onlyClassification.count(),
                 twitQueryTrainingCount: Twit.onlyTraining.count(),
+                twitQueryTestingCount: Twit.onlyTesting.count(),
                 twitQueryList: Twit.queryClassification.list().sort()]
     }
 

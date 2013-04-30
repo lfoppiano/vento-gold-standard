@@ -80,6 +80,10 @@ public class Twit {
             eq 'type', VentoTypes.TRAINING
         }
 
+        onlyTraining {
+            eq 'type', VentoTypes.TESTING
+        }
+
         byQuery { query ->
             eq 'query', query
             onlyClassification()
