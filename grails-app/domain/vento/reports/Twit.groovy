@@ -80,7 +80,7 @@ public class Twit {
             eq 'type', VentoTypes.TRAINING
         }
 
-        onlyTraining {
+        onlyTesting {
             eq 'type', VentoTypes.TESTING
         }
 
